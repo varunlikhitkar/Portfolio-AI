@@ -1,6 +1,8 @@
 "use client";
 
 import Preloader from "./Preloader";
+import CustomCursor from "./CustomCursor";
+import SmoothScroll from "./SmoothScroll";
 
 export default function Page() {
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -12,6 +14,8 @@ export default function Page() {
 
   return (
     <>
+      <SmoothScroll />
+      <CustomCursor />
       <Preloader />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600&display=swap');
