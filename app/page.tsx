@@ -1,5 +1,7 @@
 "use client";
 
+import Preloader from "./Preloader";
+
 export default function Page() {
   const scrollToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (e.currentTarget.getAttribute("href") === "#projects") {
@@ -10,6 +12,7 @@ export default function Page() {
 
   return (
     <>
+      <Preloader />
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600&display=swap');
 
@@ -181,6 +184,143 @@ export default function Page() {
         .hire-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
         .hire-dot{width:32px;height:32px;background:var(--lime);border:4px solid #000;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center}
         .hire-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:rgba(0,0,0,.5)}
+
+        /* RESPONSIVE DESIGN MEDIA QUERIES */
+        @media (max-width: 1024px) {
+          .hero {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 48px 20px;
+          }
+          .hero-left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+          }
+          .hero-desc {
+            max-width: 100%;
+          }
+          .ctas {
+            justify-content: center;
+            width: 100%;
+          }
+          .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .skills-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .skill-col {
+            border-right: 4px solid rgba(255,255,255,.08) !important;
+            border-bottom: 4px solid rgba(255,255,255,.08) !important;
+          }
+          .skill-col:nth-child(2n) {
+            border-right: none !important;
+          }
+          .skill-col:nth-child(n+3) {
+            border-bottom: none !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .nav {
+            padding: 16px 20px;
+          }
+          .section {
+            padding: 48px 20px;
+          }
+          .skills-section {
+            padding: 48px 20px;
+          }
+          .exp-section {
+            padding: 48px 20px;
+          }
+          .contact-section {
+            padding: 48px 20px;
+          }
+          .footer {
+            padding: 20px 20px;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+            justify-content: center;
+          }
+          .hire-badge-container {
+            padding: 0 20px;
+          }
+          .hero-h1 {
+            font-size: clamp(38px, 9vw, 56px);
+          }
+          .hero-h2 {
+            font-size: clamp(26px, 7vw, 40px);
+          }
+          .marquee-text {
+            font-size: 11px;
+          }
+          .marquee-dot {
+            margin-left: 16px;
+            font-size: 14px;
+          }
+          .marquee-item {
+            padding: 0 16px;
+          }
+          .projects-grid {
+            grid-template-columns: 1fr;
+          }
+          .skills-grid {
+            grid-template-columns: 1fr;
+          }
+          .skill-col {
+            border-right: none !important;
+            border-bottom: 4px solid rgba(255,255,255,.08) !important;
+          }
+          .skill-col:last-child {
+            border-bottom: none !important;
+          }
+          .exp-card {
+            padding: 24px;
+          }
+          .contact-inner {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+          .contact-links {
+            width: 100%;
+            align-items: center;
+          }
+          .contact-socials {
+            width: 100%;
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hire-badge-container {
+            justify-content: center;
+          }
+          .hero-h1 {
+            font-size: clamp(32px, 12vw, 42px);
+          }
+          .hero-h2 {
+            font-size: clamp(22px, 9vw, 30px);
+          }
+          .ctas {
+            flex-direction: column;
+            width: 100%;
+            align-items: stretch;
+          }
+          .cta-primary, .cta-secondary {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+          }
+        }
       `}</style>
 
       <div className="port">
@@ -206,8 +346,8 @@ export default function Page() {
         <nav className="nav">
           <span className="nav-brand">VL.DEV</span>
           <div className="nav-links">
-            <a href="https://github.com/varunlikhitkar" className="nav-link" title="GitHub">⌥</a>
-            <a href="https://www.linkedin.com/in/varun-likhitkar-762067286/" className="nav-link" title="LinkedIn">in</a>
+            <a href="https://github.com/varunlikhitkar" target="_blank" rel="noopener noreferrer" className="nav-link" title="GitHub">⌥</a>
+            <a href="https://www.linkedin.com/in/varun-likhitkar-762067286/" target="_blank" rel="noopener noreferrer" className="nav-link" title="LinkedIn">in</a>
             <a href="mailto:varun@example.com" className="nav-link" title="Email">@</a>
           </div>
         </nav>
@@ -222,7 +362,7 @@ export default function Page() {
             <p className="hero-desc">Maximizing development efficiency through an extensive ecosystem of modern AI tools. Specializing in LLM fine-tuning, multimodal GenAI, and autonomous AI orchestration.</p>
             <div className="ctas">
               <a href="#projects" className="cta-primary" onClick={scrollToProjects}>View Projects</a>
-              <a href="#" className="cta-secondary">⬇ Resume</a>
+              <a href="https://drive.google.com/file/d/1hrWaIoOCVbZJC7_LH6mA3rLV7eM6cMyz/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="cta-secondary">⬇ Resume</a>
             </div>
           </div>
           <div className="hero-photo">
@@ -276,9 +416,29 @@ export default function Page() {
             <div className="section-icon">→</div>
           </div>
           <div className="projects-grid">
-            {/* Card 1 */}
+            {/* Card 1 — Ovyis AI */}
             <div className="card card-white" onClick={() => {}}>
               <div className="card-top-bar" style={{ background: "var(--lime)" }}></div>
+              <div className="card-body">
+                <div className="card-header">
+                  <div className="card-icon" style={{ fontSize: "22px" }}>🤖</div>
+                  <div className="card-links">
+                    <div className="card-link">⌥</div>
+                    <div className="card-link">↗</div>
+                  </div>
+                </div>
+                <div className="card-title">Ovyis AI</div>
+                <div className="card-sub">Personal AI Platform</div>
+                <div className="card-desc">Engineered a hybrid personal AI platform deploying local LLMs for secure, private task management. Architected a local WLAN deployment model for seamless multi-device accessibility, and integrated global cloud infrastructure for remote access — balancing local data privacy with continuous availability.</div>
+                <div className="tags">
+                  <span className="tag">Python</span><span className="tag">Local LLMs</span><span className="tag">WLAN</span><span className="tag">Cloud Integration</span>
+                </div>
+                <div className="card-cta">View Project <span>→</span></div>
+              </div>
+            </div>
+            {/* Card 2 — AirTouch */}
+            <div className="card card-black" onClick={() => {}}>
+              <div className="card-top-bar" style={{ background: "#000", borderBottom: "3px solid rgba(255,255,255,.1)" }}></div>
               <div className="card-body">
                 <div className="card-header">
                   <div className="card-icon" style={{ fontSize: "22px" }}>✋</div>
@@ -289,29 +449,29 @@ export default function Page() {
                 </div>
                 <div className="card-title">AirTouch</div>
                 <div className="card-sub">AI Gesture-Controlled Virtual Mouse</div>
-                <div className="card-desc">Real-time computer vision system using MediaPipe hand-landmark detection to translate 21-point hand skeletons into mouse gestures. Achieves sub-20ms latency with a custom gesture classifier trained on 5,000+ samples.</div>
+                <div className="card-desc">Built an AI-based gesture control system using computer vision and MediaPipe for real-time mouse interaction. Added multi-hand tracking and motion smoothing for precise cursor control, drag-and-drop, and zoom actions. Packaged the Python application as a Windows executable for easy deployment.</div>
                 <div className="tags">
                   <span className="tag">Python</span><span className="tag">MediaPipe</span><span className="tag">OpenCV</span><span className="tag">PyAutoGUI</span>
                 </div>
                 <div className="card-cta">View Project <span>→</span></div>
               </div>
             </div>
-            {/* Card 2 */}
-            <div className="card card-black" onClick={() => {}}>
-              <div className="card-top-bar" style={{ background: "#000", borderBottom: "3px solid rgba(255,255,255,.1)" }}></div>
+            {/* Card 3 — Saha Traditions */}
+            <div className="card card-white" onClick={() => {}}>
+              <div className="card-top-bar" style={{ background: "var(--lime)" }}></div>
               <div className="card-body">
                 <div className="card-header">
-                  <div className="card-icon" style={{ fontSize: "22px" }}>🎙️</div>
+                  <div className="card-icon" style={{ fontSize: "22px" }}>🛍️</div>
                   <div className="card-links">
                     <div className="card-link">⌥</div>
                     <div className="card-link">↗</div>
                   </div>
                 </div>
-                <div className="card-title">ARIS</div>
-                <div className="card-sub">Personal AI Assistant — Speech to Speech</div>
-                <div className="card-desc">End-to-end multimodal AI assistant combining Whisper ASR, GPT-4o reasoning, and ElevenLabs neural TTS. Features persistent memory, tool-use via LangChain agents, and a local-first architecture.</div>
+                <div className="card-title">Saha Traditions</div>
+                <div className="card-sub">Fashion E-Commerce Website</div>
+                <div className="card-desc">Built a fashion e-commerce website for Saha Traditions, a seller of salwar suits and sarees. Delivered a smooth shopping experience for browsing and showcasing ethnic wear collections, with a fully responsive client site to strengthen online presence and support sales.</div>
                 <div className="tags">
-                  <span className="tag">Python</span><span className="tag">Whisper</span><span className="tag">ElevenLabs</span><span className="tag">LangChain</span>
+                  <span className="tag">Next.js</span><span className="tag">Tailwind CSS</span><span className="tag">Responsive Design</span><span className="tag">E-Commerce</span>
                 </div>
                 <div className="card-cta">View Project <span>→</span></div>
               </div>
@@ -389,8 +549,8 @@ export default function Page() {
             <div className="contact-links">
               <a href="mailto:varunlikhitkar@gmail.com" className="contact-email">@ varunlikhitkar@gmail.com</a>
               <div className="contact-socials">
-                <a href="https://github.com/varunlikhitkar" className="contact-social">⌥ GitHub</a>
-                <a href="https://www.linkedin.com/in/varun-likhitkar-762067286/" className="contact-social">in LinkedIn</a>
+                <a href="https://github.com/varunlikhitkar" target="_blank" rel="noopener noreferrer" className="contact-social">⌥ GitHub</a>
+                <a href="https://www.linkedin.com/in/varun-likhitkar-762067286/" target="_blank" rel="noopener noreferrer" className="contact-social">in LinkedIn</a>
               </div>
             </div>
           </div>
